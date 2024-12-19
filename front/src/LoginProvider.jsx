@@ -8,7 +8,7 @@ const LoginProvider = () => {
   return (
     <LoginContext.Provider value={{logininfo,setLogininfo}}>
       <Children />
-    </LoginContext.Provider>
+    </LoginContext.Provider>   
   )
 }
 
