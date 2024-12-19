@@ -1,0 +1,46 @@
+.lecture {
+  width: 780px;
+  height: 200px;
+  border-radius: 40px;
+  background-color: white;
+  border: none;
+  box-shadow: 0px 0px 25px 16px rgba(17, 17, 26, 0.08);
+  margin: 40px auto;
+  cursor: pointer;
+}
+
+.lectureTitle {
+  padding: 35px 35px 5px 60px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 35px;
+}
+
+.lectureDetail {
+  padding: 5px 60px 5px 60px;
+}
+
+.lectureDetail {
+  display: flex;
+}
+
+.teacherDetail {
+  padding-left: 60px;
+}
+
+.badfavorite {
+  margin-bottom: 5px;
+  padding: 5px 20px 5px 300px;
+  color: blueviolet;
+  display: flex;
+}
+
+.badfavorite .MuiSvgIcon-root {
+  font-size: 55px;
+  padding-bottom: 45px;
+}
+
+.badgoodcount {
+  margin-top: 32px;
+  font-weight: bold;
+}

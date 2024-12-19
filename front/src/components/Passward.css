@@ -1,0 +1,68 @@
+.formContainer {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.formContainer h1 {
+    text-align: center;
+}
+
+.formContainer form {
+    background-color: rgb(220, 220, 220);
+    width: 50%;
+    min-height: 350px;
+    max-width: 500px;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.uiForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.FormField {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.FormField input {
+    border: 1px solid;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 15px;
+}
+
+.formContainer button {
+    background-color: rgb(70, 70, 255);
+    width: 100%;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 30px;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.errorMsg {
+    color: red;
+    margin: 0;
+    align-self: flex-start;
+}
+
+.inputnewpassward p{
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+a {
+    margin-top: 10px;
+}

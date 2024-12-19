@@ -1,0 +1,58 @@
+.chat{
+    width:900px;
+    height:180px;
+    margin: 50px auto;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0px 0px 25px 16px rgba(17, 17, 26, 0.08);
+    cursor: pointer;
+}
+
+.userDetail{
+    display: flex;
+}
+
+.userDetail{
+   cursor: pointer;
+}
+
+.userDetail .MuiSvgIcon-root{
+    margin: 20px 10px 10px 40px;
+    font-size: 55px;
+}
+
+.userDetail .userId{
+    margin-top: 35px;
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+.comment_Icon{
+    height: 40%;
+    display: flex;
+}
+
+.comment_Icon > p{
+    margin-left: 40px;
+    margin-right: 130px;
+    line-height: 5px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.comment_Icon .MuiSvgIcon-root{
+    margin-top: 0px;
+    margin-left: 510px;
+    font-size: 50px;
+    cursor: pointer;
+    transition: 0.3s all;
+}
+
+.comment_Icon .MuiSvgIcon-root:hover{
+    font-size: 60px;
+}
+
+.replyArea{
+    margin-top: 20px;
+    margin-bottom: 10px;
+}

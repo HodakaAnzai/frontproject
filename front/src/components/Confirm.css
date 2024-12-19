@@ -1,0 +1,109 @@
+.buttonArea {
+    width: 100vw;
+    margin-top: 50px;
+    margin-bottom: 60px;
+    display: flex;
+  }
+  
+  .returnButton {
+    width: 130px;
+    height: 60px;
+    background-color: white;
+    color: #1e90ff;
+    border: solid 2px #1e90ff;
+    font-weight: bolder;
+    font-size: 36px;
+    margin-left: 80px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.5s all;
+  }
+  
+  .returnButton:hover {
+    background-color: #1e90ff;
+    color: white;
+  }
+
+  .comfirmArea{
+    width: 900px;
+    min-height: 700px;
+    background-color: white;
+    border-radius: 25px;
+    margin: 40px auto;
+    margin-bottom: 140px;
+    box-shadow: 0px 0px 25px 16px rgba(17, 17, 26, 0.08);
+  }
+
+  .comfirmArea-state{
+    background-color:red;
+    color: white;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    text-align: center;
+  }
+
+  .comfirmArea-state > h2{
+    font-size: 40px;
+    padding: 30px 0;
+    margin: 0px;
+  }
+
+.comfirmcontent{
+    padding: 10px 80px;
+}
+
+.comfirm-item{
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.comfirm-item label{
+    font-weight: bold;
+    font-size: 30px;
+    margin-right: 25px;
+}
+
+.comfirm-item p{
+    font-size: 25px;
+}
+
+.comfirm-textitem{
+margin-top: 20px;
+margin-bottom: 30px;
+}
+
+.comfirm-textitem label{
+    font-weight: bold;
+    font-size: 30px;
+    margin-right: 25px;
+}
+
+.comfirm-textitem > p{
+    font-size: 20px;
+    line-height: 35px;
+}
+
+.submitButton {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+  }
+  
+  .submitButton button {
+    display: block;
+    margin: 5px auto;
+    width: 180px;
+    height: 60px;
+    background-color: white;
+    color: #1e90ff;
+    border: solid 2px #1e90ff;
+    font-weight: bolder;
+    font-size: 23px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.5s all;
+  }
+  
+  .submitButton button:hover {
+    background-color: #1e90ff;
+    color: white;
+  }

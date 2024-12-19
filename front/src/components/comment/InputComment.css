@@ -1,0 +1,63 @@
+.inputCommentArea {
+    field-sizing: content;
+    margin: 90px auto;
+    background-color: white;
+    width: 900px;
+    border-radius: 25px;
+    box-shadow: 0px 0px 25px 16px rgba(17, 17, 26, 0.08);
+    transition: height 0.3s ease; /* 高さ変更のアニメーション */
+    overflow: hidden; /* 内容がはみ出さないようにする */
+}
+
+.Icon_comment {
+    display: flex;
+    margin: 40px;
+    margin-bottom: 5px;
+    min-height: 45px; /* 最小の高さを確保 */
+}
+
+.textArea {
+    resize: none; 
+    overflow: hidden; 
+    display: block;
+    width: 700px;
+    min-height: 20px;
+    max-height: 150px; 
+    margin: 30px 10px 30px 40px;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 25px;
+}
+
+
+.Icon_comment .MuiSvgIcon-root{
+    padding-top: 30px;
+    font-size: 55px;
+}
+
+.inputButtonArea{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 70px;
+    padding-bottom: 25px;
+}
+
+.inputButtonArea button{
+    margin-left: 15px;
+}
+
+.inputButtonArea .sendComment{
+    background-color: white;
+    color: #1e90ff;
+    border: solid 3px #1e90ff;
+    border-radius: 10px;
+    width: 80px;
+    height: 40px;
+    font-size: 20px;
+    transition: 0.5s all;
+}
+
+.inputButtonArea .sendComment:hover{
+   background-color: #1e90ff;
+   color: white;
+}

@@ -1,0 +1,10 @@
+.header{
+    margin-bottom: 20px;
+}
+
+body {
+    margin: 0;
+    padding-top: 90px;
+    box-sizing: border-box;
+    background-color: #F5F5F5;
+}

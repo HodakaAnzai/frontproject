@@ -1,0 +1,161 @@
+.buttonArea {
+  width: 100vw;
+  margin-top: 50px;
+  margin-bottom: 60px;
+  display: flex;
+}
+
+.returnButton {
+  width: 130px;
+  height: 60px;
+  background-color: white;
+  color: #1e90ff;
+  border: solid 2px #1e90ff;
+  font-weight: bolder;
+  font-size: 36px;
+  margin-left: 80px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.5s all;
+}
+
+.returnButton:hover {
+  background-color: #1e90ff;
+  color: white;
+}
+
+.addLectureArea {
+  width: 900px;
+  min-height: 1000px;
+  background-color: white;
+  border-radius: 25px;
+  margin: 40px auto;
+  margin-bottom: 140px;
+  box-shadow: 0px 0px 25px 16px rgba(17, 17, 26, 0.08);
+}
+
+.addLectureTitle {
+  background-color: #1e90ff;
+  color: white;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  text-align: center;
+}
+
+.addLectureTitle .addLectureH2 {
+  display: block;
+  font-size: 40px;
+  padding: 30px 0;
+  margin: 0px;
+}
+
+.contentArea {
+  padding: 10px 70px;
+}
+
+.must-state {
+  background-color: red;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 25px;
+  padding: 3px 5px;
+  margin-right: 20px;
+}
+
+.contentArea h3 {
+  font-size: 35px;
+  margin-bottom: 10px;
+}
+
+.inputLectureName,
+.inputLectureProfessor {
+  border: solid 3px black;
+  width: 700px;
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+input{
+  font-size: 25px;
+}
+
+.radioGroup {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.radioButton {
+  margin-right: 10px;
+  width: 60px;
+}
+
+.radioGroup label {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.textareaLectureComments {
+  width: 700px;
+  min-height: 120px;
+  border: solid 3px black;
+  resize: none;
+  margin-bottom: 20px;
+}
+
+.dayTimeRow {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.inputLectureDay {
+  width: 200px;
+  height: 50px;
+  border: solid 3px black;
+}
+
+.inputLectureTime {
+  width: 200px;
+  height: 50px;
+  border: solid 3px black;
+}
+
+.textareaLectureComments{
+  font-size: 20px;
+}
+
+.no-entered{
+  text-align: center;
+  color: red;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 25px auto;
+}
+
+.submitButton {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 40px;
+}
+
+.submitButton button {
+  display: block;
+  margin: 5px auto;
+  width: 180px;
+  height: 60px;
+  background-color: white;
+  color: #1e90ff;
+  border: solid 2px #1e90ff;
+  font-weight: bolder;
+  font-size: 23px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.5s all;
+}
+
+.submitButton button:hover {
+  background-color: #1e90ff;
+  color: white;
+}
