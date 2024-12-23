@@ -5,10 +5,10 @@ const ComfirmDelete = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const { id } = state; // 渡された授業ID
- console.log(id);
+
   const handleDelete = async () => {
     try {
-      const response = await fetch("http://localhost:8080/wsp-example/Deleteapi", {
+      const response = await fetch("http://localhost:8080/wsp-example/DeleteApi", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -19,7 +19,7 @@ const ComfirmDelete = () => {
       const data = await response.json();
       if (response.ok && data.status === "success") {
         alert("授業が削除されました");
-        navigate("/CompleteDelete"); 
+        navigate("/CompleteDelete"); // 削除成功後にホームに戻る
       } else {
         alert(data.message || "授業の削除に失敗しました");
       }

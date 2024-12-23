@@ -4,29 +4,22 @@ import "./ComfirmDelete.css";
 const ComfirmBan = () => {
     const navigate = useNavigate();
     const { state } = useLocation();
-    const { userId = "", comment = {} } = state || {};
-    const { commentId = null } = comment;
-
-    // デバッグ: state の内容を確認
-    console.log("state:", state);
-    console.log("userId:", userId);
-    console.log("commentId:", commentId);
+    const { userId = "" } = state || {};
 
     const handleConfirmBan = async () => {
         try {
-            const response = await fetch("http://localhost:8080/wsp-example/AddToBanListapi", {
+            const response = await fetch("http://localhost:8080/wsp-example/AddToBanListApi", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
                 },
                 body: new URLSearchParams({
-                    userId: userId,
-                    commentId: commentId,
+                    userId: userId, // サーバーに userId を送信
                 }),
             });
 
             if (response.ok) {
-                navigate("/Banlist");
+                navigate("/Banlist"); // バンリスト画面へ遷移
             } else {
                 console.error("バンリストへの追加に失敗しました");
                 alert("エラーが発生しました。再試行してください。");
