@@ -1,8 +1,18 @@
-# React + Vite
+使い方：
+1.
+dockerdesktopアプリを立ち上げる(アプリを起動するだけでいいよ)
+2.
+docker-compose up --buildを入力
+(立ち上げに時間がかかる)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+3.起動完了したら
+http://localhost:3001/
+にアクセスできたら成功！
 
-Currently, two official plugins are available:
+*終わるとき!!
+vscodeで新しくターミナルを開いてこのコマンドを入力！！！
+docker-compose down
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+何かあった時
+Docker version 27.3.1, build ce12230がかえってくれば問題なし
+返って来ないときはdockerdesktopアプリが起動出来てないか、またはdockerdesktopアプリ自体がインストールされてないかも？

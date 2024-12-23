@@ -69,6 +69,7 @@
 }
 
 .inputLectureName,
+.inputLectureYear,
 .inputLectureProfessor {
   border: solid 3px black;
   width: 700px;

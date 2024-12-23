@@ -1,29 +1,48 @@
-import Comment from './comment/Comment';
+import PropTypes from "prop-types";
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import './UserDetail.css';
 
-const id = ['22fi000'];
-const address = ['@ms.dendai'];
-let isBan = true;
-
 const UserDetail = () => {
-  return (
-    <div className="userDetailArea">
-      <h1 className="title">ユーザー詳細</h1>
-      <UserdetailComponent />
-      <h3 className="subtitle">過去のコメント</h3>
-      <Comment />
-    </div>
-  )
-}
+  const location = useLocation();
+  const { userId, commentId } = location.state || {}; // userId と commentId を受け取る
 
-const UserdetailComponent=()=>{
-    return (
-        <div className="detail">
-          <h2>{id}</h2>
-          <p>{address}</p>
-         {isBan ? <button>BAN解除</button> : <button>BANする</button>}
-        </div>
-      )
+  return (
+    <div className="user-detail-area">
+      <h1 className="title">ユーザー詳細</h1>
+      <UserDetailComponent userId={userId} commentId={commentId} />
+    </div>
+  );
 };
 
-export default UserDetail
+const UserDetailComponent = ({ userId, commentId }) => {
+  const [isBan, setIsBan] = useState(true);
+  const navigate = useNavigate();
+
+  const handleBanToggle = () => {
+    if (isBan) {
+      // BAN中なら /ConfirmBan に遷移
+      navigate("/ComfirmBan", { state: { userId, commentId } });
+    } else {
+      // BAN解除処理 (必要なら追加)
+      setIsBan(!isBan);
+    }
+  };
+
+  return (
+    <div className="detail">
+      <h2>{userId}</h2>
+      <p>{userId}@ms.dendai.ac.jp</p>
+      <button onClick={handleBanToggle}>
+        {isBan ? "BAN中" : "BANする"}
+      </button>
+    </div>
+  );
+};
+
+UserDetailComponent.propTypes = {
+  userId: PropTypes.string.isRequired,
+  commentId: PropTypes.number,
+};
+
+export default UserDetail;

@@ -1,21 +1,49 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 const NewPassword = () => {
   const initialValues = { email: "", newpass: "" };
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [apiMessage, setApiMessage] = useState("");
+  const [isSubmit, setIsSubmit] = useState(false); // フォームが送信されたかどうか
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
-    console.log(formValues);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormErrors(validate(formValues));
-    setIsSubmit(true);
+    const errors = validate(formValues);
+    setFormErrors(errors);
+
+    if (Object.keys(errors).length === 0) {
+      setIsSubmit(true); // フォーム送信を開始
+      try {
+        const response = await fetch("http://localhost:8080/wsp-example/RegisterApi", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams({
+            email: formValues.email,
+            password: formValues.newpass,
+          }),
+        });
+
+        if (response.ok) {
+          setApiMessage("新しいパスワードが登録されました！");
+        } else {
+          const errorText = await response.text();
+          setApiMessage(`エラー: ${errorText}`);
+        }
+      } catch (error) {
+        setApiMessage("サーバーに接続できませんでした。");
+        console.error("エラー:", error);
+      } finally {
+        setIsSubmit(false); // フォーム送信終了
+      }
+    }
   };
 
   const validate = (values) => {
@@ -37,7 +65,7 @@ const NewPassword = () => {
 
   return (
     <div className="formContainer">
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={handleSubmit}>
         <h1>新規パスワード登録</h1>
         <hr />
         <div className="uiForm">
@@ -46,7 +74,8 @@ const NewPassword = () => {
               type="text"
               placeholder="メールアドレス"
               name="email"
-              onChange={(e) => handleChange(e)}
+              value={formValues.email}
+              onChange={handleChange}
             />
           </div>
           <p className="errorMsg">{formErrors.email}</p>
@@ -56,15 +85,16 @@ const NewPassword = () => {
               type="password"
               placeholder="新規パスワード"
               name="newpass"
-              onChange={(e) => handleChange(e)}
+              value={formValues.newpass}
+              onChange={handleChange}
             />
           </div>
           <p className="errorMsg">{formErrors.newpass}</p>
 
-          <button>確定</button>
-          {Object.keys(formErrors).length === 0 && isSubmit && (
-            <div className="msgok">新しいパスワードが登録されました</div>
-          )}
+          <button type="submit" disabled={isSubmit}>
+            {isSubmit ? "送信中..." : "確定"}
+          </button>
+          {apiMessage && <div className="apiMessage">{apiMessage}</div>}
         </div>
       </form>
     </div>

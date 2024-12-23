@@ -130,8 +130,13 @@
 }
 
 .commentTextArea > p{
+    font-size: 20px;
     margin-left: 15px;
     margin-right: 15px;
+    font-weight: bold;
+    word-wrap: break-word; /* 長い単語を折り返す */
+    overflow-wrap: break-word; /* 追加の互換性のため */
+    white-space: normal; /* テキストを折り返す */
 }
 
 .deleteButtonArea{
@@ -189,5 +194,12 @@
 .chatArea{
     margin-top: 100px;
     margin-bottom: 160px;
+}
+
+.nocomment-text{
+  font-size: 30px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
 }
 

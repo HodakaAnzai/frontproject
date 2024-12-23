@@ -2,8 +2,9 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PropTypes from "prop-types";
 import { useCallback, useRef, useState } from "react";
 import "./InputComment.css";
+import "./InputReply.css";
 
-const InputComment = ({ userId, lectureId, onCommentAdded }) => {
+const InputReply = ({ userId, lectureId, parentComment, onCommentAdded }) => {
   const textareaRef = useRef(null);
   const [content, setContent] = useState("");
 
@@ -23,6 +24,7 @@ const InputComment = ({ userId, lectureId, onCommentAdded }) => {
       userId: userId,
       classId: lectureId,
       content: content.trim(),
+      parentComment: parentComment, // リプライの親コメントID
     };
 
     console.log("送信データ:", payload);
@@ -40,27 +42,27 @@ const InputComment = ({ userId, lectureId, onCommentAdded }) => {
 
       const data = await response.json();
       if (data.status === "success") {
-        alert("コメントが追加されました");
+        alert("リプライが追加されました");
         setContent(""); // 入力欄をリセット
         onCommentAdded(); // コメントリストを更新
       } else {
-        alert(data.message || "コメントの追加に失敗しました");
+        alert(data.message || "リプライの追加に失敗しました");
       }
     } catch (err) {
-      console.error("コメント送信エラー:", err);
+      console.error("リプライ送信エラー:", err);
       alert("サーバーへの接続に失敗しました");
     }
   };
 
   return (
     <div>
-      <div className="inputCommentArea">
+      <div className="inputCommentArea reply">
         <div className="Icon_comment">
           <AccountCircleIcon />
           <textarea
             ref={textareaRef}
             className="textArea"
-            placeholder="コメントを入力...."
+            placeholder="リプライコメントを入力...."
             value={content}
             onChange={(e) => {
               setContent(e.target.value);
@@ -79,10 +81,11 @@ const InputComment = ({ userId, lectureId, onCommentAdded }) => {
   );
 };
 
-InputComment.propTypes = {
+InputReply.propTypes = {
   userId: PropTypes.string.isRequired,
   lectureId: PropTypes.number.isRequired,
-  onCommentAdded: PropTypes.func.isRequired,
+  parentComment: PropTypes.number.isRequired, // リプライ対象のコメントID
+  onCommentAdded: PropTypes.func.isRequired, // コメントリストを更新する関数
 };
 
-export default InputComment;
+export default InputReply;

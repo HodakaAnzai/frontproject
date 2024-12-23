@@ -22,15 +22,25 @@
 
 .lectureDetail {
   display: flex;
+  margin-right: 20px;
+  justify-content: space-between;
+}
+
+.dayDetail{
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .teacherDetail {
-  padding-left: 60px;
+  /* padding-left: 60px; */
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .badfavorite {
   margin-bottom: 5px;
-  padding: 5px 20px 5px 300px;
+  display: block;
+  padding: 5px 20px 5px 30px;
   color: blueviolet;
   display: flex;
 }
@@ -38,9 +48,11 @@
 .badfavorite .MuiSvgIcon-root {
   font-size: 55px;
   padding-bottom: 45px;
+  margin-left: auto;
 }
 
 .badgoodcount {
   margin-top: 32px;
   font-weight: bold;
 }
+

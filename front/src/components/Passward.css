@@ -36,6 +36,7 @@
 .FormField input {
     border: 1px solid;
     padding: 10px;
+    margin: 3px auto;
     border-radius: 4px;
     font-size: 15px;
 }
@@ -58,10 +59,12 @@
     align-self: flex-start;
 }
 
-.inputnewpassward p{
-    margin-top: 10px;
+.inputnewpassward {
+    margin-top: 5px;
+    font-size: 20px;
     cursor: pointer;
 }
+
 
 a {
     margin-top: 10px;

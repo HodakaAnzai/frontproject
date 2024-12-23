@@ -1,10 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { LoginContext } from "../LoginProvider";
 import "./AddLecture.css";
 
 const AddLecture = () => {
   const navigate = useNavigate();
   const textaraRef = useRef(null);
+  const { logininfo } = useContext(LoginContext);
 
   const [lecturename, setLectureName] = useState(""); //講義名
   const [season, setSeason] = useState(null); //開講時期
@@ -37,6 +39,12 @@ const AddLecture = () => {
   const onChangePeriod = (e) => {
     setPeriod(e.target.value);
   };
+
+  useEffect(()=>{
+    if(!logininfo){
+     navigate("/loginpass");
+    }
+   },[])
 
   useEffect(() => {
     if (
@@ -143,15 +151,15 @@ const AddLecture = () => {
                 <option value="" disabled>
                   曜日を選択
                 </option>
-                <option value="月曜">月曜</option>
-                <option value="火曜">火曜</option>
-                <option value="水曜">水曜</option>
-                <option value="木曜">木曜</option>
-                <option value="金曜">金曜</option>
+                <option value="月">月曜</option>
+                <option value="火">火曜</option>
+                <option value="水">水曜</option>
+                <option value="木">木曜</option>
+                <option value="金">金曜</option>
               </select>
               <input
                 type="text"
-                placeholder="例: 3限"
+                placeholder="例: 3"
                 className="inputLectureTime"
                 value={period}
                 onChange={(e) => onChangePeriod(e)}

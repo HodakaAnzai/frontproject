@@ -3,33 +3,46 @@
     margin-top: 50px;
     margin-bottom: 60px;
     display: flex;
-    justify-content: flex-end; 
+    justify-content: flex-end;
     justify-content: space-between;
-}
-
-.bunListButton{
-    width: 180px;
+  }
+  
+  .bunListButtonContainer {
+    width: 260px; /* Banリストボタンと同じ幅 */
+    height: 60px; /* ボタンと同じ高さ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .bunListButtonPlaceholder {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .bunListButton {
+    width: 260px;
     height: 60px;
     background-color: white;
-    color: #1E90FF;
-    border:solid 2px #1E90FF;
+    color: #1e90ff;
+    border: solid 2px #1e90ff;
     font-weight: bolder;
     font-size: 23px;
-    margin-left: 80px;
     border-radius: 15px;
+    margin-left: 80px;
     cursor: pointer;
     transition: 0.5s all;
-}
-
-.bunListButton:hover{
-    background-color: #1E90FF;
+  }
+  
+  .bunListButton:hover {
+    background-color: #1e90ff;
     color: white;
-}
-
-.addButton {
+  }
+  
+  .addButton {
     width: 180px;
     height: 60px;
-    background-color: #1E90FF;
+    background-color: #1e90ff;
     color: white;
     font-weight: bolder;
     font-size: 23px;
@@ -38,72 +51,72 @@
     border-radius: 15px;
     cursor: pointer;
     transition: 0.5s all;
-}
-
-.addButton:hover{
-    background-color:#0066dd;
-}
-
-.searchArea{
+  }
+  
+  .addButton:hover {
+    background-color: #0066dd;
+  }
+  
+  .searchArea {
     margin-top: 40px;
     margin-bottom: 40px;
     display: flex;
     justify-content: center;
-}
-
-.searchForm{
-    width:580px;
+  }
+  
+  .searchForm {
+    width: 580px;
     background-color: #d3d3d3;
     padding: 10px 60px 10px;
     border-radius: 25px;
     box-shadow: 3px 9px 4px -2px #777777;
-}
-
-input{
-    width:450px;
-    height:39px;
+  }
+  
+  input {
+    width: 450px;
+    height: 39px;
     border-radius: 10px;
     margin-right: 10px;
     border: none;
     font-weight: bold;
     font-size: 16px;
     padding-left: 5px;
-}
-
-.searchButton{
-    width:92px;
-    height:44px;
-    background-color: #1E90FF;
+  }
+  
+  .searchButton {
+    width: 92px;
+    height: 44px;
+    background-color: #1e90ff;
     color: white;
     font-weight: bold;
     font-size: 20px;
     margin-left: 20px;
     border-radius: 12px;
-    border:none;
+    border: none;
     cursor: pointer;
     transition: 0.5s all;
-}
-
-.searchButton:hover{
-    background-color:#0066dd;
-}
-
-.titleArea{
-    height:80px;
+  }
+  
+  .searchButton:hover {
+    background-color: #0066dd;
+  }
+  
+  .titleArea {
+    height: 80px;
     margin: 40px 70px 5px;
     display: flex;
-}
-
-.titleArea h2{
-  font-weight: bold;
-  font-size: 43px;
-  color: black;
-  margin-left: 320px;
-}
-
-.titleArea select{
+  }
+  
+  .titleArea h2 {
+    font-weight: bold;
+    font-size: 43px;
+    color: black;
+    margin-left: 320px;
+  }
+  
+  .titleArea select {
     width: 140px;
-    height:40px;
+    height: 40px;
     margin-left: 320px;
     margin-top: 45px;
     border-radius: 5px;
@@ -111,10 +124,16 @@ input{
     font-weight: bold;
     font-size: 15px;
     cursor: pointer;
-}
-
-.lecturelistArea{
+  }
+  
+  .lecturelistArea {
     margin: 45px 0 100px 0;
     justify-content: center;
-}
-
+  }
+  
+  .nolecture {
+    margin: 20px 500px;
+    font-size: 30px;
+    font-weight: bold;
+  }
+  
