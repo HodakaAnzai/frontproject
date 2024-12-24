@@ -52,7 +52,7 @@ const LectureList = () => {
     } else {
       setUseban(false);
     }
-  }, []);
+  }, [userId, logininfo]);
 
   // 検索処理
   const handleSearch = () => {
@@ -87,12 +87,12 @@ const LectureList = () => {
     setFilteredLectures(updatedLectures);
   };
 
-  // フィルターの変更
-  const handleFilterChange = (e) => {
-    setFilterOption(e.target.value);
-    handleSearch(); // フィルタリングを更新
-  };
+  // フィルター変更時に検索処理を実行
+  useEffect(() => {
+    handleSearch();
+  }, [filterOption]);
 
+  // テキストボックス入力イベント
   const onchangeText = (e) => {
     setInputText(e.target.value);
   };
@@ -135,7 +135,11 @@ const LectureList = () => {
 
       <div className="titleArea">
         <h2>授業情報一覧</h2>
-        <select name="filter" value={filterOption} onChange={handleFilterChange}>
+        <select
+          name="filter"
+          value={filterOption}
+          onChange={(e) => setFilterOption(e.target.value)}
+        >
           <option value="default">通常表示</option>
           <option value="badGoodCount">悪いね数順</option>
           <option value="firstSemester">前期</option>

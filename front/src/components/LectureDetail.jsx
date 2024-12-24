@@ -14,20 +14,20 @@ import InputComment from "./comment/InputComment";
 const LectureDetail = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { id, title, semester, day, period, teacher, description, badGoodCount } =
+  const { id, title, semester, day, period, teacher, description, badGoodCount: initialBadGoodCount } =
     location.state || {};
 
+  const [badGoodCount, setBadGoodCount] = useState(initialBadGoodCount || 0); // 状態として管理
+  const [isToggled, setIsToggled] = useState(false); // トグル状態管理
   const [comments, setComments] = useState([]);
   const { userId } = useContext(UserIdContext);
   const { logininfo } = useContext(LoginContext);
 
-  const UserId= userId; // ユーザーID
-
-  useEffect(()=>{
-   if(!logininfo){
-    navigate("/loginpass");
-   }
-  },[])
+  useEffect(() => {
+    if (!logininfo) {
+      navigate("/loginpass");
+    }
+  }, []);
 
   // コメントを取得する関数
   const fetchComments = async () => {
@@ -57,6 +57,43 @@ const LectureDetail = () => {
   useEffect(() => {
     fetchComments();
   }, [id]);
+
+  // 「悪いね」のトグル
+  const handleToggleBadGood = async () => {
+    try {
+      const newCount = isToggled ? badGoodCount - 1 : badGoodCount + 1; // 状態に応じて増減
+      setBadGoodCount(newCount); // 状態を先に更新
+      setIsToggled(!isToggled); // トグル状態を切り替え
+
+      // サーバーへリクエストを送信
+      const response = await fetch("http://localhost:8080/wsp-example/UpdateDislikeapi", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          classId: id, // 授業 ID を送信
+          action: isToggled ? "decrement" : "increment", // 増減アクションを指定
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("サーバーへのリクエストが失敗しました");
+      }
+
+      const result = await response.text();
+      if (result !== "success") {
+        alert("サーバー側での更新に失敗しました");
+        setBadGoodCount(isToggled ? badGoodCount + 1 : badGoodCount - 1); // 元に戻す
+        setIsToggled(!isToggled); // トグル状態も元に戻す
+      }
+    } catch (error) {
+      console.error("通信エラー:", error);
+      alert("通信エラーが発生しました。再試行してください。");
+      setBadGoodCount(isToggled ? badGoodCount + 1 : badGoodCount - 1); // エラー時に元に戻す
+      setIsToggled(!isToggled); // トグル状態も元に戻す
+    }
+  };
 
   return (
     <div>
@@ -105,7 +142,10 @@ const LectureDetail = () => {
           <p>{description}</p>
         </div>
         <div className="badgoodArea">
-          <FavoriteIcon />
+          <FavoriteIcon
+            style={{ cursor: "pointer" }}
+            onClick={handleToggleBadGood} // クリック時にトグル
+          />
           <p>{badGoodCount}</p>
         </div>
         <div className="deleteButtonArea">
@@ -135,7 +175,7 @@ const LectureDetail = () => {
                 replies={comments.filter(
                   (reply) => reply.parentComment === comment.commentId
                 )}
-                userId={UserId}
+                userId={userId}
                 lectureId={id}
                 onCommentAdded={fetchComments}
               />

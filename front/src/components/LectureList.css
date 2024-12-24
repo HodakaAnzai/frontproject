@@ -8,8 +8,8 @@
   }
   
   .bunListButtonContainer {
-    width: 260px; /* Banリストボタンと同じ幅 */
-    height: 60px; /* ボタンと同じ高さ */
+    width: 260px; 
+    height: 60px; 
     display: flex;
     justify-content: center;
     align-items: center;

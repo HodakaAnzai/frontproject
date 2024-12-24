@@ -44,7 +44,7 @@ const Passward = () => {
       try {
         // メールアドレスの存在確認APIを呼び出す
         const checkEmailResponse = await fetch(
-          "http://localhost:8080/wsp-example/api/check-emailapi",
+          "http://localhost:8080/wsp-example/api/check-email",
           {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -54,38 +54,48 @@ const Passward = () => {
 
         const checkEmailData = await checkEmailResponse.json();
 
-        if (checkEmailResponse.ok && checkEmailData.exists) {
-          // パスワード検証APIを呼び出す
-          const checkPasswordResponse = await fetch(
-            "http://localhost:8080/wsp-example/api/check-passwordapi",
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(formValues),
+        if (checkEmailResponse.ok) {
+          if (checkEmailData.banned) {
+            // バンされている場合
+            setApiMessage("このメールアドレスはバンされています。ログインできません。");
+            alert("このメールアドレスはバンされています。");
+            setFormValues(initialValues); // フォームをリセット
+          } else if (checkEmailData.exists) {
+            // パスワード検証APIを呼び出す
+            const checkPasswordResponse = await fetch(
+              "http://localhost:8080/wsp-example/api/check-passwordapi",
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formValues),
+              }
+            );
+
+            const checkPasswordData = await checkPasswordResponse.json();
+
+            if (checkPasswordResponse.ok && checkPasswordData.status === "success") {
+              setApiMessage("ログイン成功！リダイレクト中...");
+              setLogininfo(true);
+
+              // メールアドレスからユーザーIDを抽出して保存
+              const userId = extractUserId(formValues.email);
+              if (userId) {
+                setUserId(userId);
+              }
+
+              alert("ログイン成功！");
+              navigate("/"); // リダイレクト処理
+            } else {
+              setApiMessage(checkPasswordData.message || "パスワードが間違っています。");
+              alert("パスワードが間違っています。");
             }
-          );
-
-          const checkPasswordData = await checkPasswordResponse.json();
-
-          if (checkPasswordResponse.ok && checkPasswordData.status === "success") {
-            setApiMessage("ログイン成功！リダイレクト中...");
-            setLogininfo(true);
-
-            // メールアドレスからユーザーIDを抽出して保存
-            const userId = extractUserId(formValues.email);
-            if (userId) {
-              setUserId(userId);
-            }
-
-            alert("ログイン成功！");
-            navigate("/"); // リダイレクト処理
           } else {
-            setApiMessage(checkPasswordData.message || "パスワードが間違っています。");
-            alert("パスワードが間違っています。");
+            setApiMessage("メールアドレスが存在しません。");
+            alert("メールアドレスが存在しません。");
           }
         } else {
-          setApiMessage(checkEmailData.message || "メールアドレスが存在しません。");
-          alert("メールアドレスが存在しません。");
+          setApiMessage("エラーが発生しました。");
+          alert("ログイン出来ません。");
         }
       } catch (error) {
         setApiMessage("サーバーに接続できませんでした。");

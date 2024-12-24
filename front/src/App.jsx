@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 
+import { BanlistProvider } from "./BanlistProvider";
 import AddLecture from "./components/AddLecture";
 import Banlist from "./components/Banlist";
 import ComfirmBan from "./components/ComfirmBan";
@@ -29,6 +30,7 @@ function App() {
           <Header />
         </div>
          <UserIdProvider>
+          <BanlistProvider >
         {/* <main> */}
         <Routes>
           <Route path="/" element={<LectureList />} />
@@ -46,6 +48,7 @@ function App() {
           <Route path="/ComfirmBan" element={<ComfirmBan />} />
           <Route path="/UserDetail" element={<UserDetail />} />
         </Routes>
+        </BanlistProvider>
         </UserIdProvider>
         </LoginProvider>
       </BrowserRouter>

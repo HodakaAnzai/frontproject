@@ -1,46 +1,13 @@
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import PropTypes from 'prop-types';
-import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { BanlistContext } from "../BanlistProvider";
 import "./BanList.css";
 
 const Banlist = () => {
-  const [banlist, setBanlist] = useState([]);
-  const [error, setError] = useState(null); // エラーステート追加
+  const { banlist, error } = useContext(BanlistContext); // Context からデータを取得
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchBanlist = async () => {
-      try {
-        console.log("APIリクエスト開始");
-
-        const response = await fetch("http://localhost:8080/wsp-example/api/banlistapi", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
-        console.log("レスポンス取得完了");
-
-        if (!response.ok) {
-          const errorData = await response.json();
-          console.log("Error:", errorData.error || "エラーが発生しました");
-          setError("データを取得できませんでした");
-          return;
-        }
-
-        const data = await response.json();
-        console.log("取得したデータ:", data);
-        setBanlist(data); // レスポンスをステートに保存
-      } catch (err) {
-        console.error("サーバーに接続できませんでした:", err);
-        setError("サーバーに接続できませんでした");
-      }
-    };
-
-    fetchBanlist(); // 初回マウント時にAPIを呼び出し
-  }, []);
 
   if (error) {
     return (
@@ -73,9 +40,9 @@ const Banlist = () => {
 export const Ban = ({ id }) => {
   const navigate = useNavigate();
   return (
-    <div className="ban" onClick={()=>navigate("/UserDetail",{
-      state:{
-        userId:id.userId,
+    <div className="ban" onClick={() => navigate("/UserDetail", {
+      state: {
+        userId: id.userId,
       }
     })}>
       <AccountCircleIcon />
@@ -89,4 +56,5 @@ Ban.propTypes = {
     userId: PropTypes.string,
   }),
 };
+
 export default Banlist;

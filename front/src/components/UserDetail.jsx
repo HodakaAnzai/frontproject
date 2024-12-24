@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { BanlistContext } from "../BanlistProvider"; // BanlistContext をインポート
 import './UserDetail.css';
 
 const UserDetail = () => {
@@ -16,16 +17,17 @@ const UserDetail = () => {
 };
 
 const UserDetailComponent = ({ userId, commentId }) => {
-  const [isBan, setIsBan] = useState(true);
+  const { banlist } = useContext(BanlistContext); // BanlistContext から banlist を取得
+  const isBan = banlist.some((banEntry) => banEntry.userId === userId); // ユーザーがBANされているか確認
   const navigate = useNavigate();
 
   const handleBanToggle = () => {
-    if (isBan) {
+    if (!isBan) {
       // BAN中なら /ConfirmBan に遷移
       navigate("/ComfirmBan", { state: { userId, commentId } });
     } else {
-      // BAN解除処理 (必要なら追加)
-      setIsBan(!isBan);
+      // BAN解除処理は実装しない (仕様により)
+      alert("このユーザーはBANされています。");
     }
   };
 

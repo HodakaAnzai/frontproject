@@ -1,14 +1,10 @@
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import PropTypes from "prop-types";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Lecture.css";
 
 const Lecture = ({ lecture }) => {
   const navigate = useNavigate();
-
-  // 初回レンダリング時にランダムな値を設定
-  const [badGoodCount] = useState(lecture?.badGoodCount || Math.floor(Math.random() * 100) + 1);
 
   // データがなかった時のデフォルト値
   const lectureId = lecture?.id || 0;
@@ -18,6 +14,7 @@ const Lecture = ({ lecture }) => {
   const periodDetail = lecture?.period || "2限";
   const teacherDetail = lecture?.teacher || "担当教名";
   const description = lecture?.description || "授業の詳細がありません";
+  const badGoodCount = lecture?.badGoodCount || 0; // 初期値を受け取る
 
   return (
     <div
@@ -25,14 +22,14 @@ const Lecture = ({ lecture }) => {
       onClick={() =>
         navigate("/LectureDetail", {
           state: {
-            id: lectureId, 
+            id: lectureId,
             title: lectureTitle,
             semester: semester,
             day: dayDetail,
             period: periodDetail,
             teacher: teacherDetail,
             description: description,
-            badGoodCount: badGoodCount,
+            badGoodCount: badGoodCount, // 受け取った badGoodCount を渡す
           },
         })
       }
@@ -45,7 +42,7 @@ const Lecture = ({ lecture }) => {
         <p className="teacherDetail">{teacherDetail}</p>
         <div className="badfavorite">
           <FavoriteIcon className="favoriteIcon" />
-          <p className="badgoodcount">{badGoodCount}</p>
+          <p className="badgoodcount">{badGoodCount}</p> {/* badGoodCount を表示 */}
         </div>
       </div>
     </div>
@@ -61,7 +58,7 @@ Lecture.propTypes = {
     period: PropTypes.string,
     teacher: PropTypes.string,
     description: PropTypes.string,
-    badGoodCount: PropTypes.number,
+    badGoodCount: PropTypes.number, // badGoodCount を追加
   }),
 };
 
@@ -74,7 +71,7 @@ Lecture.defaultProps = {
     period: "2限",
     teacher: "担当教名",
     description: "授業の詳細がありません",
-    badGoodCount: 2,
+    badGoodCount: 0, // デフォルト値を 0 に設定
   },
 };
 
