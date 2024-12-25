@@ -33,7 +33,7 @@ const LectureDetail = () => {
   const fetchComments = async () => {
     try {
       const response = await fetch(
-        "http://localhost:8080/wsp-example/api/comments",
+        "http://133.20.51.169:8080/wsp-example/api/comments",
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },

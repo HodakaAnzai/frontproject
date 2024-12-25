@@ -8,7 +8,7 @@ const ComfirmDelete = () => {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch("http://localhost:8080/wsp-example/DeleteApi", {
+      const response = await fetch("http://localhost:8080/wsp-example/Deleteapi", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
