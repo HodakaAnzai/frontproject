@@ -1,4 +1,8 @@
-使い方： 1. dockerdesktopアプリを立ち上げる(アプリを起動するだけ)  
+# アプリ概要  
+
+
+# 環境構築  
+1. dockerdesktopアプリを立ち上げる(アプリを起動するだけ)  
 
 2. docker-compose up --buildを入力 (立ち上げに時間がかかる)
 ```
