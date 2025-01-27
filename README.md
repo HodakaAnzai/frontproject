@@ -19,7 +19,10 @@
 ### 4.Youtubeのように授業コメントにリプライメッセージを送ることも出来ます！
 ![Image](https://github.com/user-attachments/assets/f3b1131b-c987-4892-8fc9-5ff637508ebb)
 
-
+# 使用技術
+REACT.js(フロントエンド）
+JAVA(バックエンド)
+postgresSQL(バックエンド)
 
 # 環境構築  
 1. dockerdesktopアプリを立ち上げる(アプリを起動するだけ)  
